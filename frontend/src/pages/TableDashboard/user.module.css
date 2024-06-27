@@ -1,0 +1,56 @@
+/* Define um contêiner flexível com um espaço (gap) de 20px entre os itens */
+.tela {
+  display: flex;
+  gap: 20px;
+}
+
+/* Estiliza o cabeçalho para ser flexível, com fundo branco e espaço (gap) de 770px entre os itens */
+.cabecalho {
+  display: flex;
+  background-color: #fff;
+  width: 100%;
+  gap: 770px;
+}
+
+/* Estiliza a seção de perfil para ser flexível, ocupar toda a largura disponível e ter um espaço (gap) de 10px entre os itens */
+.perfil {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+/* Define a altura dos elementos select e ajusta a posição para ficar 25px abaixo */
+select {
+  height: 20px;
+  position: relative;
+  top: 25px;
+}
+
+
+.principal {
+  /* Posiciona o .principal 270px à esquerda da sua posição original */
+  margin-left: 330px;
+}
+
+@media (Min-width:2130px){
+  .principal{
+  margin-left: 365px;
+  }
+  .cabecalho{
+    gap: 900px;
+  }
+}
+@media (Min-width:2530px){
+  .principal{
+  margin-left: 495px;
+  }
+  
+}
+@media (Min-width:2130px){
+  .principal{
+  margin-left: 375px;
+  }
+  .cabecalho{
+    gap: 673px;
+  }
+}
