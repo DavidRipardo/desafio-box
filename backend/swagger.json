@@ -1,0 +1,839 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API-Teste-Box3",
+    "description": "Documentação para API de teste estagiários Box3 criada com Prisma, Typescript, Express e Clean Architecture",
+    "version": "1.0.0",
+    "contact": {
+      "email": "manuel@box3.work"
+    }
+  },
+  "tags": [
+    {
+      "name": "Usuarios",
+      "description": "Informações dos usuários"
+    },
+    {
+      "name": "Clientes",
+      "description": "Informações dos Clientes"
+    },
+    {
+      "name": "Tarefas",
+      "description": "Informações das Tarefas"
+    },
+    {
+      "name": "Cargos",
+      "description": "Informações dos Cargos"
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://localhost:3333/",
+      "description": "API de teste"
+    }
+  ],
+  "paths": {
+    "/usuarios": {
+      "post": {
+        "summary": "Registro de usuario",
+        "description": "Rota para registro de usuarios",
+        "tags": [
+          "Usuarios"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "nome": "Name of user",
+                    "email": "example@example.com.br",
+                    "cpf": "000.000.000-11",
+                    "telefone": "889998008",
+                    "status": false,
+                    "categoria": "Funcionário"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Usuário já existe!"
+          },
+          "500": {
+            "description": "Internal server Error"
+          },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Obter todos os usuários",
+        "description": "Rota para obter todos os usuários",
+        "tags": [
+          "Usuarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "204": {
+            "description": "Does not exists users registers in database"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/usuarios/{id}": {
+      "patch": {
+        "summary": "Alterar valores usuarios",
+        "description": "Rota para alterar os valores de usuarios",
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Modificando usuario por id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              },
+              "examples": {
+                "usuario": {
+                  "value": {
+                    "nome": "Name of user",
+                    "email": "example@example.com.br",
+                    "cpf": "000.000.000-11",
+                    "telefone": "889998008",
+                    "status": false,
+                    "categoria": "Funcionário"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Usuário Não Existente !"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar usuário",
+        "description": "Rota para deletar um usuário",
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Deletando usuario por id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Usuario deletado !"
+          },
+          "400": {
+            "description": "Usuario noa existe!"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/usuarios/usuario/{id}": {
+      "get": {
+        "summary": "Obter usuário por id",
+        "description": "Rota para obter usuário por id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Modificando usuario por id",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Usuarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "204": {
+            "description": "Does not exists users registers in database"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/clientes": {
+      "post": {
+        "summary": "Registro de clientes",
+        "description": "Rota para registro de clientes",
+        "tags": [
+          "Clientes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              },
+              "examples": {
+                "cliente": {
+                  "value": {
+                    "nome": "Name of user",
+                    "cpf": "000.000.000-11",
+                    "telefone": "889998008"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Cliente já existe!"
+          },
+          "500": {
+            "description": "Internal server Error"
+          },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Obter todos os Clientes",
+        "description": "Rota para obter todos os Clientes",
+        "tags": [
+          "Clientes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "204": {
+            "description": "Does not exists users registers in database"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/clientes/{id}": {
+      "patch": {
+        "summary": "Alterar valores Clientes",
+        "description": "Rota para alterar os valores de Clientes",
+        "tags": [
+          "Clientes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Modificando Cliente por id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              },
+              "examples": {
+                "usuario": {
+                  "value": {
+                    "nome": "Name of user",
+                    "cpf": "000.000.000-11",
+                    "telefone": "889998008"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Cliente Não Existente !"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar Cliente",
+        "description": "Rota para deletar um Cliente",
+        "tags": [
+          "Clientes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Deletando Cliente por id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Cliente deletado !"
+          },
+          "400": {
+            "description": "Cliente noa existe!"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/clientes/cliente/{id}": {
+      "get": {
+        "summary": "Obter Cliente por id",
+        "description": "Rota para obter Cliente por id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Modificando cliente por id",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Clientes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "204": {
+            "description": "Does not exists users registers in database"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/tarefas": {
+      "post": {
+        "summary": "Registro de tarefas",
+        "description": "Rota para registro de tarefas",
+        "tags": [
+          "Tarefas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tarefa"
+              },
+              "examples": {
+                "task": {
+                  "value": {
+                    "descricao": "Tarefa numero 1",
+                    "status": "finalizada",
+                    "duracao": "2021-03-28T04:04:20.700Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Tarefa já existe!"
+          },
+          "500": {
+            "description": "Internal server Error"
+          },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Tarefa"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Obter todos as Tarefas",
+        "description": "Rota para obter todos as Tarefas",
+        "tags": [
+          "Tarefas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "204": {
+            "description": "Does not exists users registers in database"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/tarefas/{id}": {
+      "patch": {
+        "summary": "Alterar valores Tarefas",
+        "description": "Rota para alterar os valores de Tarefas",
+        "tags": [
+          "Tarefas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Modificando Tarefa por id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tarefa"
+              },
+              "examples": {
+                "usuario": {
+                  "value": {
+                    "descricao": "Tarefa numero 1",
+                    "status": "finalizada",
+                    "duracao": "2021-03-28T04:04:20.700Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Tarefa Não Existente !"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar Tarefa",
+        "description": "Rota para deletar uma Tarefa",
+        "tags": [
+          "Tarefas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Deletando Tarefa por id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Tarefa deletado !"
+          },
+          "400": {
+            "description": "Tarefa noa existe!"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/tarefas/tarefa/{id}": {
+      "get": {
+        "summary": "Obter Tarefa por id",
+        "description": "Rota para obter Tarefa por id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Modificando tarefa por id",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Tarefas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "204": {
+            "description": "Does not exists users registers in database"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/cargos": {
+      "post": {
+        "summary": "Registro de cargo",
+        "description": "Rota para registro de cargos",
+        "tags": [
+          "Cargos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cargo"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "descricao": "Nome do cargo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Cargo já existe!"
+          },
+          "500": {
+            "description": "Internal server Error"
+          },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Cargo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Obter todos os Cargos",
+        "description": "Rota para obter todos os Cargos",
+        "tags": [
+          "Cargos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "204": {
+            "description": "Does not exists users registers in database"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/cargos/{id}": {
+      "patch": {
+        "summary": "Alterar valores Cargos",
+        "description": "Rota para alterar os valores de Cargos",
+        "tags": [
+          "Cargos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Modificando Cargos por id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cargo"
+              },
+              "examples": {
+                "usuario": {
+                  "value": {
+                    "descricao": "Nome do cargo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Cargo Não Existente !"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar Cargo",
+        "description": "Rota para deletar um Cargo",
+        "tags": [
+          "Cargos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Deletando Cargo por id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Cargo deletado !"
+          },
+          "400": {
+            "description": "Cargo noa existe!"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/cargos/cargo/{id}": {
+      "get": {
+        "summary": "Obter Cargos por id",
+        "description": "Rota para obter Cargos por id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Modificando cargo por id",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Cargos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "204": {
+            "description": "Does not exists users registers in database"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "usuario@example.com"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "123.456.789-00"
+          },
+          "telefone": {
+            "type": "string",
+            "example": "(11) 91234-5678"
+          },
+          "nome": {
+            "type": "string",
+            "example": "João da Silva"
+          },
+          "categoria": {
+            "type": "string",
+            "example": "admin"
+          },
+          "status": {
+            "type": "boolean",
+            "example": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-06-14T00:00:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-06-14T00:00:00.000Z"
+          }
+        }
+      },
+      "Cliente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Maria de Souza"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "123.456.789-00"
+          },
+          "telefone": {
+            "type": "string",
+            "example": "(11) 91234-5678"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-06-14T00:00:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-06-14T00:00:00.000Z"
+          }
+        }
+      },
+      "Cargo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "descricao": {
+            "type": "string",
+            "example": "Desenvolvedor"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-06-14T00:00:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-06-14T00:00:00.000Z"
+          },
+          "funcionarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Funcionario"
+            }
+          }
+        }
+      },
+      "Tarefa": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "descricao": {
+            "type": "string",
+            "example": "Implementar nova funcionalidade"
+          },
+          "status": {
+            "type": "string",
+            "example": "pendente"
+          },
+          "duracao": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-06-14T02:00:00.000Z"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-06-14T00:00:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-06-14T00:00:00.000Z"
+          }
+        }
+      }
+    }
+  }
+}
