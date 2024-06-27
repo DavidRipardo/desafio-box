@@ -1,0 +1,30 @@
+
+
+/* Estilos para inputs genéricos */
+input {
+  margin: 0px 10px; /* Margens internas nos inputs */
+}
+
+/* Estilos para inputs de filtro e selects */
+.filter-input,
+.filter-select {
+  margin-left: 10px; /* Margem à esquerda */
+  padding: 10px; /* Preenchimento interno */
+  border-radius: 4px; /* Borda arredondada */
+  border: 1px solid #ccc; /* Borda cinza */
+  top: 10px; /* Posicionamento superior */
+}
+
+/* Estilos de foco para inputs de filtro e selects */
+.filter-input:focus,
+.filter-select:focus {
+  outline: none; /* Remove o contorno padrão de foco */
+  
+}
+
+/* Estilos para o contêiner principal do aplicativo Kanban */
+.app {
+  display: flex; /* Layout flexível */
+  flex-direction: column; /* Direção da coluna */
+  gap: 50px; /* Espaçamento entre os elementos filhos */
+}

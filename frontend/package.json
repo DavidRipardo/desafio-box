@@ -12,7 +12,6 @@
   "dependencies": {
     "@syncfusion/ej2-react-kanban": "^26.1.35",
     "aos": "^2.3.4",
-    "axios": "^1.7.2",
     "jqwidgets-scripts": "^19.2.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
@@ -24,7 +23,6 @@
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
